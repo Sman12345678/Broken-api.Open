@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import openai
 import os
@@ -7,10 +7,14 @@ from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all routes✌️
+CORS(app, resources={r"/*": {"origins": "*"}})  # Enable CORS for all 
 
 # Set your OpenAI API key here
 openai.api_key = os.getenv('OPENAI_API_KEY')
+
+@app.route('/')
+def index():
+    return send_from_directory('.', 'index.html')
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -35,7 +39,7 @@ def chat():
         messages=conversation
     )
 
-    # Extract the response
+    # Extract the response from ChatGPT
     chatgpt_response = response.choices[0].message['content']
 
     return jsonify({'response': chatgpt_response})
@@ -47,5 +51,5 @@ def after_request(response):
     return response
 
 if __name__ == '__main__':
-    
+    # Run the Flask app on all available IP addresses and port 5000
     app.run(host='0.0.0.0', port=5000, debug=True)
