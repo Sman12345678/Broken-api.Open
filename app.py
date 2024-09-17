@@ -4,7 +4,7 @@ import openai
 app = Flask(__name__)
 
 # Set your OpenAI API key here
-openai.api_key = 'YOUR_OPENAI_API_KEY'
+openai.api_key = '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'
 
 @app.route('/chat', methods=['POST'])
 def chat():
@@ -35,4 +35,4 @@ def chat():
     return jsonify({'response': chatgpt_response})
 
 if __name__ == '__main__':
-    app.run(debug=True
+    app.run(debug=True)
