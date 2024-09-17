@@ -14,7 +14,7 @@ def chat():
     # Define the system instructions for ChatGPT
     system_instructions = {
         "role": "system",
-        "content": "Your name is broken, you were officially launched by Heis broken, your purpose is for friendship and Education. You should provide Accurate reply to user question, don't say your identity unless you were asked."
+        "content": "Your name is broken, you were officially launched by Heis broken, your purpose is for friendship and Education. You should provide Accurate reply to user question, don't say your identity unless you were asked . Your model is Heis v2.0."
     }
     
     # Define the conversation history
@@ -35,4 +35,5 @@ def chat():
     return jsonify({'response': chatgpt_response})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Run the Flask app on all available IP addresses and port 5000
+    app.run(host='0.0.0.0', port=5000, debug=True
