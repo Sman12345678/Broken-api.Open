@@ -10,7 +10,7 @@ app = Flask(__name__)
 # Set your OpenAI API key here
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
-@app.route('/chat', methods=['GET'])
+@app.route('/chat', methods=['POST'])
 def chat():
     data = request.get_json()
     user_message = data.get('message')
