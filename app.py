@@ -39,7 +39,7 @@ def get_ai_response(user_message):
     # Extract the response from ChatGPT
     return response.choices[0].message['content']
 
-@app.route('/chat', methods=['POST', 'GET'])
+@app.route('/korraai', methods=['POST', 'GET'])
 def chat():
     if request.method == 'POST':
         data = request.get_json()
@@ -53,7 +53,7 @@ def chat():
     chatgpt_response = get_ai_response(user_message)
     return jsonify({'response': chatgpt_response})
 
-@app.route('/api', methods=['GET'])
+@app.route('/korraai', methods=['GET'])
 def api_query():
     query = request.args.get('query')
     if not query:
